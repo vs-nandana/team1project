@@ -58,7 +58,7 @@
 
 /* USER CODE BEGIN PV */
 __attribute__((section(".shared_ram")))
-SharedMemory_t s;
+extern SharedMemory_t s;
 
 /* USER CODE END PV */
 
@@ -71,7 +71,7 @@ void MX_FREERTOS_Init(void);
 
 /* Private user code ---------------------------------------------------------*/
 /* USER CODE BEGIN 0 */
-
+extern ADC_HandleTypeDef hadc3;
 /* USER CODE END 0 */
 
 /**
