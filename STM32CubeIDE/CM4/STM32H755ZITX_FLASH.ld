@@ -45,6 +45,8 @@ MEMORY
 {
 FLASH (rx)     : ORIGIN = 0x08100000, LENGTH = 1024K
 RAM (xrw)      : ORIGIN = 0x10000000, LENGTH = 288K
+
+SHARED_RAM (xrw) : ORIGIN = 0x38000000, LENGTH = 4K
 }
 
 /* Define output sections */
@@ -133,7 +135,14 @@ SECTIONS
     _edata = .;        /* define a global symbol at data end */
   } >RAM AT> FLASH
 
-
+	
+  .shared_ram (NOLOAD) :
+   {
+	 . = ALIGN(4);
+	 *(.shared_ram)
+	 . = ALIGN(4);
+   } > SHARED_RAM
+	
   /* Uninitialized data section */
   . = ALIGN(4);
   .bss :

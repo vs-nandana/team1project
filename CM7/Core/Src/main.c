@@ -23,7 +23,7 @@
 
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
-
+#include "share.h"
 /* USER CODE END Includes */
 
 /* Private typedef -----------------------------------------------------------*/
@@ -56,6 +56,8 @@
 /* Private variables ---------------------------------------------------------*/
 
 /* USER CODE BEGIN PV */
+__attribute__((section(".shared_ram")))
+SharedMemory_t s;
 
 /* USER CODE END PV */
 
@@ -103,7 +105,13 @@ int main(void)
   HAL_Init();
 
   /* USER CODE BEGIN Init */
-
+  s.min = 99.0f;
+  s.max = 0.0f;
+  s.avg = 0.0f;
+  s.sample_rate_index = 0;
+  s.is_run = 0;
+  s.instant_tx = 0;
+  s.reset_stats = 0;
   /* USER CODE END Init */
 
   /* Configure the system clock */
@@ -144,7 +152,10 @@ Error_Handler();
   while (1)
   {
     /* USER CODE END WHILE */
-
+	HAL_HSEM_FastTake(1);
+	s.avg += 1.0f;
+	HAL_HSEM_Release(1,0);
+	HAL_Delay(1000);
     /* USER CODE BEGIN 3 */
   }
   /* USER CODE END 3 */

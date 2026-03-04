@@ -50,6 +50,8 @@ MEMORY
   RAM_D2 (xrw)   : ORIGIN = 0x30000000, LENGTH = 288K
   RAM_D3 (xrw)   : ORIGIN = 0x38000000, LENGTH = 64K
   ITCMRAM (xrw)  : ORIGIN = 0x00000000, LENGTH = 64K
+  
+  SHARED_RAM (xrw) : ORIGIN = 0x38000000, LENGTH = 4K
 }
 
 /* Sections */
@@ -149,7 +151,14 @@ SECTIONS
     . = ALIGN(4);
     _edata = .;        /* define a global symbol at data end */
   } >RAM_D1 AT> FLASH
-
+	
+  .shared_ram (NOLOAD) :
+   {
+	 . = ALIGN(4);
+	 *(.shared_ram)
+	 . = ALIGN(4);
+   } > SHARED_RAM
+	
   /* Uninitialized data section into "RAM" Ram type memory */
   . = ALIGN(4);
   .bss :
