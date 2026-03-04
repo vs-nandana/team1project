@@ -1,3 +1,3 @@
-/home/vijay/Documents/STM/team1project0.1/CM4/Core/Src/tim.c:30:6:MX_TIM2_Init	4
-/home/vijay/Documents/STM/team1project0.1/CM4/Core/Src/tim.c:70:6:HAL_TIM_Base_MspInit	2
-/home/vijay/Documents/STM/team1project0.1/CM4/Core/Src/tim.c:90:6:HAL_TIM_Base_MspDeInit	2
+/home/george/STM32CubeIDE/workspace_2.0.0/team1project/CM4/Core/Src/tim.c:30:6:MX_TIM2_Init	4
+/home/george/STM32CubeIDE/workspace_2.0.0/team1project/CM4/Core/Src/tim.c:70:6:HAL_TIM_Base_MspInit	2
+/home/george/STM32CubeIDE/workspace_2.0.0/team1project/CM4/Core/Src/tim.c:90:6:HAL_TIM_Base_MspDeInit	2

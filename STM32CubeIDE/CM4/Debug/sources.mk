@@ -26,4 +26,5 @@ Application/User/Core \
 Application/User/Startup \
 Drivers/CMSIS \
 Drivers/STM32H7xx_HAL_Driver \
+Middlewares/FreeRTOS \
 

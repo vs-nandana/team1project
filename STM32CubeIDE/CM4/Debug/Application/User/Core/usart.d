@@ -1,5 +1,5 @@
 Application/User/Core/usart.o: \
- /home/vijay/Documents/STM/team1project0.1/CM4/Core/Src/usart.c \
+ /home/george/STM32CubeIDE/workspace_2.0.0/team1project/CM4/Core/Src/usart.c \
  ../../../CM4/Core/Inc/usart.h ../../../CM4/Core/Inc/main.h \
  ../../../Drivers/STM32H7xx_HAL_Driver/Inc/stm32h7xx_hal.h \
  ../../../CM4/Core/Inc/stm32h7xx_hal_conf.h \

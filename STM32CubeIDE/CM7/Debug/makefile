@@ -9,6 +9,7 @@ RM := rm -rf
 
 # All of the sources participating in the build are defined here
 -include sources.mk
+-include Middlewares/FreeRTOS/subdir.mk
 -include Drivers/STM32H7xx_HAL_Driver/subdir.mk
 -include Drivers/CMSIS/subdir.mk
 -include Application/User/Startup/subdir.mk
@@ -61,8 +62,8 @@ all: main-build
 main-build: team1project0.1_CM7.elf secondary-outputs
 
 # Tool invocations
-team1project0.1_CM7.elf team1project0.1_CM7.map: $(OBJS) $(USER_OBJS) /home/vijay/Documents/STM/team1project0.1/STM32CubeIDE/CM7/STM32H755ZITX_FLASH.ld makefile objects.list $(OPTIONAL_TOOL_DEPS)
-	arm-none-eabi-gcc -o "team1project0.1_CM7.elf" @"objects.list" $(USER_OBJS) $(LIBS) -mcpu=cortex-m7 -T"/home/vijay/Documents/STM/team1project0.1/STM32CubeIDE/CM7/STM32H755ZITX_FLASH.ld" --specs=nosys.specs -Wl,-Map="team1project0.1_CM7.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv5-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+team1project0.1_CM7.elf team1project0.1_CM7.map: $(OBJS) $(USER_OBJS) /home/george/STM32CubeIDE/workspace_2.0.0/team1project/STM32CubeIDE/CM7/STM32H755ZITX_FLASH.ld makefile objects.list $(OPTIONAL_TOOL_DEPS)
+	arm-none-eabi-gcc -o "team1project0.1_CM7.elf" @"objects.list" $(USER_OBJS) $(LIBS) -mcpu=cortex-m7 -T"/home/george/STM32CubeIDE/workspace_2.0.0/team1project/STM32CubeIDE/CM7/STM32H755ZITX_FLASH.ld" --specs=nosys.specs -Wl,-Map="team1project0.1_CM7.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv5-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
 	@echo 'Finished building target: $@'
 	@echo ' '
 

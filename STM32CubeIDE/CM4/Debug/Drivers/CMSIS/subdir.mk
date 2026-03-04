@@ -5,7 +5,7 @@
 
 # Add inputs and outputs from these tool invocations to the build variables 
 C_SRCS += \
-/home/vijay/Documents/STM/team1project0.1/Common/Src/system_stm32h7xx_dualcore_boot_cm4_cm7.c 
+/home/george/STM32CubeIDE/workspace_2.0.0/team1project/Common/Src/system_stm32h7xx_dualcore_boot_cm4_cm7.c 
 
 OBJS += \
 ./Drivers/CMSIS/system_stm32h7xx_dualcore_boot_cm4_cm7.o 
@@ -15,8 +15,8 @@ C_DEPS += \
 
 
 # Each subdirectory must supply rules for building sources it contributes
-Drivers/CMSIS/system_stm32h7xx_dualcore_boot_cm4_cm7.o: /home/vijay/Documents/STM/team1project0.1/Common/Src/system_stm32h7xx_dualcore_boot_cm4_cm7.c Drivers/CMSIS/subdir.mk
-	arm-none-eabi-gcc "$<" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DCORE_CM4 -DUSE_HAL_DRIVER -DSTM32H755xx -DUSE_PWR_DIRECT_SMPS_SUPPLY -c -I../../../CM4/Core/Inc -I../../../Drivers/STM32H7xx_HAL_Driver/Inc -I../../../Drivers/STM32H7xx_HAL_Driver/Inc/Legacy -I../../../Drivers/CMSIS/Device/ST/STM32H7xx/Include -I../../../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"$(@:%.o=%.d)" -MT"$@" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "$@"
+Drivers/CMSIS/system_stm32h7xx_dualcore_boot_cm4_cm7.o: /home/george/STM32CubeIDE/workspace_2.0.0/team1project/Common/Src/system_stm32h7xx_dualcore_boot_cm4_cm7.c Drivers/CMSIS/subdir.mk
+	arm-none-eabi-gcc "$<" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DCORE_CM4 -DUSE_HAL_DRIVER -DSTM32H755xx -DUSE_PWR_DIRECT_SMPS_SUPPLY -c -I../../../CM4/Core/Inc -I../../../Drivers/STM32H7xx_HAL_Driver/Inc -I../../../Drivers/STM32H7xx_HAL_Driver/Inc/Legacy -I../../../Drivers/CMSIS/Device/ST/STM32H7xx/Include -I../../../Drivers/CMSIS/Include -I../../../Middlewares/Third_Party/FreeRTOS/Source/include -I../../../Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS_V2 -I../../../Middlewares/Third_Party/FreeRTOS/Source/portable/GCC/ARM_CM4F -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"$(@:%.o=%.d)" -MT"$@" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "$@"
 
 clean: clean-Drivers-2f-CMSIS
 

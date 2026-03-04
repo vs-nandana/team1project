@@ -41,7 +41,7 @@ void MX_TIM2_Init(void)
 
   /* USER CODE END TIM2_Init 1 */
   htim2.Instance = TIM2;
-  htim2.Init.Prescaler = 64000;
+  htim2.Init.Prescaler = 6400;
   htim2.Init.CounterMode = TIM_COUNTERMODE_UP;
   htim2.Init.Period = 60000;
   htim2.Init.ClockDivision = TIM_CLOCKDIVISION_DIV1;
@@ -62,7 +62,7 @@ void MX_TIM2_Init(void)
     Error_Handler();
   }
   /* USER CODE BEGIN TIM2_Init 2 */
-
+  HAL_TIM_Base_Start_IT(&htim2);
   /* USER CODE END TIM2_Init 2 */
 
 }

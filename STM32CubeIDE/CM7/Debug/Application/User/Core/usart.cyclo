@@ -1,4 +1,4 @@
-/home/vijay/Documents/STM/team1project0.1/CM7/Core/Src/usart.c:31:6:MX_USART3_UART_Init	5
-/home/vijay/Documents/STM/team1project0.1/CM7/Core/Src/usart.c:74:6:HAL_UART_MspInit	3
-/home/vijay/Documents/STM/team1project0.1/CM7/Core/Src/usart.c:101:6:HAL_UART_MspDeInit	2
-/home/vijay/Documents/STM/team1project0.1/CM7/Core/Src/usart.c:119:5:_write	1
+/home/george/STM32CubeIDE/workspace_2.0.0/team1project/CM7/Core/Src/usart.c:31:6:MX_USART3_UART_Init	5
+/home/george/STM32CubeIDE/workspace_2.0.0/team1project/CM7/Core/Src/usart.c:74:6:HAL_UART_MspInit	3
+/home/george/STM32CubeIDE/workspace_2.0.0/team1project/CM7/Core/Src/usart.c:101:6:HAL_UART_MspDeInit	2
+/home/george/STM32CubeIDE/workspace_2.0.0/team1project/CM7/Core/Src/usart.c:119:5:_write	1

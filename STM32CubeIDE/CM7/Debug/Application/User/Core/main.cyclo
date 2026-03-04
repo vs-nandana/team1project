@@ -1,3 +1,4 @@
-/home/vijay/Documents/STM/team1project0.1/CM7/Core/Src/main.c:79:5:main	7
-/home/vijay/Documents/STM/team1project0.1/CM7/Core/Src/main.c:168:6:SystemClock_Config	4
-/home/vijay/Documents/STM/team1project0.1/CM7/Core/Src/main.c:226:6:Error_Handler	1
+/home/george/STM32CubeIDE/workspace_2.0.0/team1project/CM7/Core/Src/main.c:81:5:main	7
+/home/george/STM32CubeIDE/workspace_2.0.0/team1project/CM7/Core/Src/main.c:176:6:SystemClock_Config	4
+/home/george/STM32CubeIDE/workspace_2.0.0/team1project/CM7/Core/Src/main.c:238:6:HAL_TIM_PeriodElapsedCallback	2
+/home/george/STM32CubeIDE/workspace_2.0.0/team1project/CM7/Core/Src/main.c:256:6:Error_Handler	1

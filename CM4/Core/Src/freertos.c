@@ -22,10 +22,17 @@
 #include "task.h"
 #include "main.h"
 #include "cmsis_os.h"
+#include "share.h"
 
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
-
+#include "tim.h"
+#include "usart.h"
+#include "string.h"
+#include "stdio.h"
+__attribute__((section(".shared_ram")))
+SharedMemory_t s;
+void Board1_M4_transmit(float , float , float , int );
 /* USER CODE END Includes */
 
 /* Private typedef -----------------------------------------------------------*/
@@ -155,6 +162,10 @@ void Encodetransmit(void *argument)
   /* Infinite loop */
   for(;;)
   {
+	  if(osSemaphoreAcquire(timerBinarySem01Handle, osWaitForever) == osOK){
+
+			  Board1_M4_transmit(s.min,s.max,s.avg,0);
+	  }
     osDelay(1);
   }
   /* USER CODE END Encodetransmit */
@@ -162,6 +173,23 @@ void Encodetransmit(void *argument)
 
 /* Private application code --------------------------------------------------*/
 /* USER CODE BEGIN Application */
+
+void Board1_M4_transmit(float min, float max, float avg, int event){
+	char msg[50];
+
+
+	memset(msg, 0, sizeof(msg));
+
+	snprintf(msg, sizeof(msg), "MIN:%.2f,MAX:%.2f,AVG:%.2f,EVT:%d\r\n", min, max, avg, event);
+
+
+	if (HAL_UART_Transmit(&huart2, (uint8_t*)msg, sizeof(msg)-1, 1000) == HAL_OK){
+		printf(msg);
+	}
+
+
+}
+
 
 /* USER CODE END Application */
 

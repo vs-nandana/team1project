@@ -1,5 +1,5 @@
 Drivers/CMSIS/system_stm32h7xx_dualcore_boot_cm4_cm7.o: \
- /home/vijay/Documents/STM/team1project0.1/Common/Src/system_stm32h7xx_dualcore_boot_cm4_cm7.c \
+ /home/george/STM32CubeIDE/workspace_2.0.0/team1project/Common/Src/system_stm32h7xx_dualcore_boot_cm4_cm7.c \
  ../../../Drivers/CMSIS/Device/ST/STM32H7xx/Include/stm32h7xx.h \
  ../../../Drivers/CMSIS/Device/ST/STM32H7xx/Include/stm32h755xx.h \
  ../../../Drivers/CMSIS/Include/core_cm4.h \

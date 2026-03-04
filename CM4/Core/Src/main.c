@@ -23,9 +23,13 @@
 #include "usart.h"
 #include "gpio.h"
 
+
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
 #include "share.h"
+#include "stdio.h"
+#include "string.h"
+extern osSemaphoreId_t timerBinarySem01Handle;
 /* USER CODE END Includes */
 
 /* Private typedef -----------------------------------------------------------*/
@@ -58,15 +62,14 @@
 /* Private variables ---------------------------------------------------------*/
 
 /* USER CODE BEGIN PV */
-__attribute__((section(".shared_ram")))
-SharedMemory_t s;
+
 
 /* USER CODE END PV */
 
 /* Private function prototypes -----------------------------------------------*/
 void MX_FREERTOS_Init(void);
 /* USER CODE BEGIN PFP */
-
+void Board1_M4_transmit(float , float , float , int );
 /* USER CODE END PFP */
 
 /* Private user code ---------------------------------------------------------*/
@@ -82,6 +85,7 @@ int main(void)
 {
 
   /* USER CODE BEGIN 1 */
+
 
   /* USER CODE END 1 */
 
@@ -159,6 +163,11 @@ int main(void)
 void HAL_TIM_PeriodElapsedCallback(TIM_HandleTypeDef *htim)
 {
   /* USER CODE BEGIN Callback 0 */
+	if (htim->Instance == TIM2)
+	  {
+
+		osSemaphoreRelease(timerBinarySem01Handle);
+	  }
 
   /* USER CODE END Callback 0 */
   if (htim->Instance == TIM4)

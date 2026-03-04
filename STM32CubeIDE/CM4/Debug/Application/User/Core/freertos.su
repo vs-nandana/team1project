@@ -1,0 +1,4 @@
+/home/george/STM32CubeIDE/workspace_2.0.0/team1project/CM4/Core/Src/freertos.c:92:6:MX_FREERTOS_Init	8	static
+/home/george/STM32CubeIDE/workspace_2.0.0/team1project/CM4/Core/Src/freertos.c:141:6:StartDefaultTask	16	static
+/home/george/STM32CubeIDE/workspace_2.0.0/team1project/CM4/Core/Src/freertos.c:159:6:Encodetransmit	16	static
+/home/george/STM32CubeIDE/workspace_2.0.0/team1project/CM4/Core/Src/freertos.c:177:6:Board1_M4_transmit	128	static

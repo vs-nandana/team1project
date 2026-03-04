@@ -1,5 +1,5 @@
 Application/User/Core/main.o: \
- /home/vijay/Documents/STM/team1project0.1/CM4/Core/Src/main.c \
+ /home/george/STM32CubeIDE/workspace_2.0.0/team1project/CM4/Core/Src/main.c \
  ../../../CM4/Core/Inc/main.h \
  ../../../Drivers/STM32H7xx_HAL_Driver/Inc/stm32h7xx_hal.h \
  ../../../CM4/Core/Inc/stm32h7xx_hal_conf.h \
@@ -33,6 +33,17 @@ Application/User/Core/main.o: \
  ../../../Drivers/STM32H7xx_HAL_Driver/Inc/stm32h7xx_hal_tim_ex.h \
  ../../../Drivers/STM32H7xx_HAL_Driver/Inc/stm32h7xx_hal_uart.h \
  ../../../Drivers/STM32H7xx_HAL_Driver/Inc/stm32h7xx_hal_uart_ex.h \
+ ../../../Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS_V2/cmsis_os.h \
+ ../../../Middlewares/Third_Party/FreeRTOS/Source/include/FreeRTOS.h \
+ ../../../CM4/Core/Inc/FreeRTOSConfig.h \
+ ../../../Middlewares/Third_Party/FreeRTOS/Source/include/projdefs.h \
+ ../../../Middlewares/Third_Party/FreeRTOS/Source/include/portable.h \
+ ../../../Middlewares/Third_Party/FreeRTOS/Source/include/deprecated_definitions.h \
+ ../../../Middlewares/Third_Party/FreeRTOS/Source/portable/GCC/ARM_CM4F/portmacro.h \
+ ../../../Middlewares/Third_Party/FreeRTOS/Source/include/mpu_wrappers.h \
+ ../../../Middlewares/Third_Party/FreeRTOS/Source/include/task.h \
+ ../../../Middlewares/Third_Party/FreeRTOS/Source/include/list.h \
+ ../../../Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS_V2/cmsis_os2.h \
  ../../../CM4/Core/Inc/tim.h ../../../CM4/Core/Inc/main.h \
  ../../../CM4/Core/Inc/usart.h ../../../CM4/Core/Inc/gpio.h \
  ../../../CM4/Core/Inc/share.h
@@ -69,6 +80,17 @@ Application/User/Core/main.o: \
 ../../../Drivers/STM32H7xx_HAL_Driver/Inc/stm32h7xx_hal_tim_ex.h:
 ../../../Drivers/STM32H7xx_HAL_Driver/Inc/stm32h7xx_hal_uart.h:
 ../../../Drivers/STM32H7xx_HAL_Driver/Inc/stm32h7xx_hal_uart_ex.h:
+../../../Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS_V2/cmsis_os.h:
+../../../Middlewares/Third_Party/FreeRTOS/Source/include/FreeRTOS.h:
+../../../CM4/Core/Inc/FreeRTOSConfig.h:
+../../../Middlewares/Third_Party/FreeRTOS/Source/include/projdefs.h:
+../../../Middlewares/Third_Party/FreeRTOS/Source/include/portable.h:
+../../../Middlewares/Third_Party/FreeRTOS/Source/include/deprecated_definitions.h:
+../../../Middlewares/Third_Party/FreeRTOS/Source/portable/GCC/ARM_CM4F/portmacro.h:
+../../../Middlewares/Third_Party/FreeRTOS/Source/include/mpu_wrappers.h:
+../../../Middlewares/Third_Party/FreeRTOS/Source/include/task.h:
+../../../Middlewares/Third_Party/FreeRTOS/Source/include/list.h:
+../../../Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS_V2/cmsis_os2.h:
 ../../../CM4/Core/Inc/tim.h:
 ../../../CM4/Core/Inc/main.h:
 ../../../CM4/Core/Inc/usart.h:
