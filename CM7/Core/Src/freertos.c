@@ -260,11 +260,13 @@ void HAL_HSEM_FreeCallback(uint32_t semmask){
 	}
 	if(semmask & __HAL_HSEM_SEMID_TO_MASK(5)){
 		// Sampling rate change
+		s.sample_rate_index = (s.sample_rate_index + 1 ) % 7 ;
+		length = (int)(60000 / sample_arr[s.sample_rate_index]);
 	}
-//	if(semmask & __HAL_HSEM_SEMID_TO_MASK(4)){
-//			// Sampling rate change
-//		resetStats();
-//	}
+	if(semmask & __HAL_HSEM_SEMID_TO_MASK(4)){
+			// Sampling rate change
+		resetStats();
+	}
 }
 /* USER CODE END Application */
 

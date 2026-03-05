@@ -47,7 +47,7 @@ void Board1_M4_transmit(float , float , float , int );
 
 /* Private macro -------------------------------------------------------------*/
 /* USER CODE BEGIN PM */
-#define DEBOUNCE_MS   50U
+#define DEBOUNCE_MS   0U
 
 static uint32_t last_tick_sw1 = 0U;
 static uint32_t last_tick_sw2 = 0U;
@@ -204,9 +204,10 @@ void Board1_M4_transmit(float min, float max, float avg, int event){
 	snprintf(msg, sizeof(msg), "MIN:%.2f,MAX:%.2f,AVG:%.2f,EVT:%d\r\n", min, max, avg, event);
 
 	printf(msg);
-	if (HAL_UART_Transmit(&huart2, (uint8_t*)msg, sizeof(msg)-1, 1000) == HAL_OK){
-		printf("Transmitted\r\n");
-	}
+	HAL_UART_Transmit(&huart2, (uint8_t*)msg, sizeof(msg)-1, 1000);
+//	if (HAL_UART_Transmit(&huart2, (uint8_t*)msg, sizeof(msg)-1, 1000) == HAL_OK){
+//		printf("Transmitted\r\n");
+//	}
 
 
 }
@@ -257,7 +258,6 @@ void HAL_GPIO_EXTI_Callback(uint16_t GPIO_Pin)
     {
         if ((now - last_tick_sw4) < DEBOUNCE_MS) return;
         last_tick_sw4 = now;
-        s.sample_rate_index = (s.sample_rate_index + 1 ) % 7 ;
         Notify_M7_via_HSEM(5);
         Board1_M4_transmit(s.min, s.max, s.avg, 2);
     }
