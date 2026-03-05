@@ -2,6 +2,6 @@
 /home/vijay/Documents/STM/team1project/CM7/Core/Src/freertos.c:97:7:findAvg	3
 /home/vijay/Documents/STM/team1project/CM7/Core/Src/freertos.c:108:6:leftShiftAndAdd	2
 /home/vijay/Documents/STM/team1project/CM7/Core/Src/freertos.c:130:6:MX_FREERTOS_Init	1
-/home/vijay/Documents/STM/team1project/CM7/Core/Src/freertos.c:172:6:StartDefaultTask	8
-/home/vijay/Documents/STM/team1project/CM7/Core/Src/freertos.c:247:6:resetStats	1
-/home/vijay/Documents/STM/team1project/CM7/Core/Src/freertos.c:257:6:HAL_HSEM_FreeCallback	3
+/home/vijay/Documents/STM/team1project/CM7/Core/Src/freertos.c:172:6:StartDefaultTask	9
+/home/vijay/Documents/STM/team1project/CM7/Core/Src/freertos.c:252:6:resetStats	1
+/home/vijay/Documents/STM/team1project/CM7/Core/Src/freertos.c:262:6:HAL_HSEM_FreeCallback	3

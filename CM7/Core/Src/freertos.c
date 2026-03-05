@@ -51,8 +51,8 @@ SharedMemory_t s;
 volatile float current_temperature=0.0f;
 uint32_t adc_raw_value = 0;
 int sample_arr[7]={500,1000,5000,10000,20000,30000,60000};
-int length;
-int delay;
+volatile int length;
+volatile int smpl_cng = 0;
 float max=0.0f , min=999.0f;
 float avg=0;
 float buff[240];
@@ -172,16 +172,21 @@ void MX_FREERTOS_Init(void) {
 void StartDefaultTask(void *argument)
 {
   /* USER CODE BEGIN StartDefaultTask */
+	length = (int)(60000 / sample_arr[s.sample_rate_index]);
 
-  length = (int)(60000 / sample_arr[s.sample_rate_index]);
-  delay = sample_arr[s.sample_rate_index];
   /* Infinite loop */
   for(;;)
   {
+
+
 	  while(s.is_run){
 	if(s.reset_stats > 0){
 		resetStats();
 		s.reset_stats = 0;
+	}
+	if(smpl_cng == 1){
+		length = (int)(60000 / sample_arr[s.sample_rate_index]);
+		smpl_cng = 0;
 	}
 	  HAL_ADC_Start(&hadc3);
 	  if (HAL_ADC_PollForConversion(&hadc3, 10) == HAL_OK) {
@@ -231,8 +236,8 @@ void StartDefaultTask(void *argument)
 	              }
 */
 
-	    	      HAL_HSEM_Release(SH_MEM_SEM_ID, 0);
-	    	      osDelay(delay);
+		  HAL_HSEM_Release(SH_MEM_SEM_ID, 0);
+		  osDelay(sample_arr[s.sample_rate_index]);
 
 	  }
 	  HAL_ADC_Stop(&hadc3);
@@ -261,8 +266,7 @@ void HAL_HSEM_FreeCallback(uint32_t semmask){
 	if(semmask & __HAL_HSEM_SEMID_TO_MASK(5)){
 		// Sampling rate change
 		count = 0;
-		length = (int)(60000 / sample_arr[s.sample_rate_index]);
-		delay = sample_arr[s.sample_rate_index];
+		smpl_cng = 1;
 	}
 	if(semmask & __HAL_HSEM_SEMID_TO_MASK(4)){
 			// Sampling rate change

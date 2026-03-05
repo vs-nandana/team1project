@@ -32,7 +32,7 @@
 #include "stdio.h"
 __attribute__((section(".shared_ram")))
 SharedMemory_t s;
-void Board1_M4_transmit(float , float , float , int , int);
+void Board1_M4_transmit(float , float , float , int , int, int);
 /* USER CODE END Includes */
 
 /* Private typedef -----------------------------------------------------------*/
@@ -185,7 +185,7 @@ void Encodetransmit(void *argument)
   {
 	  if(osSemaphoreAcquire(timerBinarySem01Handle, osWaitForever) == osOK){
 
-			  Board1_M4_transmit(s.min,s.max,s.avg,0, s.sample_rate_index);
+			  Board1_M4_transmit(s.min,s.max,s.avg,0, s.sample_rate_index,s.is_run);
 	  }
     osDelay(1);
   }
@@ -195,13 +195,13 @@ void Encodetransmit(void *argument)
 /* Private application code --------------------------------------------------*/
 /* USER CODE BEGIN Application */
 
-void Board1_M4_transmit(float min, float max, float avg, int event , int smp){
+void Board1_M4_transmit(float min, float max, float avg, int event , int smp, int run){
 	char msg[50];
 
 
 	memset(msg, 0, sizeof(msg));
 
-	snprintf(msg, sizeof(msg), "MIN:%.2f,MAX:%.2f,AVG:%.2f,EVT:%d,SMP:%d\r\n", min, max, avg, event, smp);
+	snprintf(msg, sizeof(msg), "MIN:%.2f,MAX:%.2f,AVG:%.2f,EVT:%d,SMP:%d,RUN:%d\r\n", min, max, avg, event, smp, run);
 
 	printf(msg);
 	HAL_UART_Transmit(&huart2, (uint8_t*)msg, sizeof(msg)-1, 1000);
@@ -229,7 +229,7 @@ void HAL_GPIO_EXTI_Callback(uint16_t GPIO_Pin)
 
         s.is_run ^= 1U;
         //Notify_M7_via_HSEM(2);
-        Board1_M4_transmit(s.min, s.max, s.avg, 1 ,s.sample_rate_index);
+        Board1_M4_transmit(s.min, s.max, s.avg, 1 ,s.sample_rate_index, s.is_run);
     }
 
     else if (GPIO_Pin == SW2_PIN)
@@ -240,7 +240,7 @@ void HAL_GPIO_EXTI_Callback(uint16_t GPIO_Pin)
         s.instant_tx= 1U;
 
         Notify_M7_via_HSEM(3);
-        Board1_M4_transmit(s.min, s.max, s.avg, 3, s.sample_rate_index);
+        Board1_M4_transmit(s.min, s.max, s.avg, 3, s.sample_rate_index, s.is_run);
     }
 
     else if (GPIO_Pin == SW3_PIN)
@@ -250,7 +250,7 @@ void HAL_GPIO_EXTI_Callback(uint16_t GPIO_Pin)
 
         s.reset_stats = 1;
 
-        Board1_M4_transmit(0.0f, 0.0f, 0.0f, 4,s.sample_rate_index);
+        Board1_M4_transmit(0.0f, 0.0f, 0.0f, 4,s.sample_rate_index, s.is_run);
         Notify_M7_via_HSEM(4);
     }
 
@@ -260,7 +260,7 @@ void HAL_GPIO_EXTI_Callback(uint16_t GPIO_Pin)
         last_tick_sw4 = now;
         s.sample_rate_index = (s.sample_rate_index + 1 ) % 7 ;
         Notify_M7_via_HSEM(5);
-        Board1_M4_transmit(s.min, s.max, s.avg, 2,s.sample_rate_index);
+        Board1_M4_transmit(s.min, s.max, s.avg, 2,s.sample_rate_index, s.is_run);
     }
 }
 /* USER CODE END Application */
