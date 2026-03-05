@@ -178,6 +178,10 @@ void StartDefaultTask(void *argument)
   for(;;)
   {
 	  while(s.is_run){
+	if(s.reset_stats > 0){
+		resetStats();
+		s.reset_stats = 0;
+	}
 	  HAL_ADC_Start(&hadc3);
 	  if (HAL_ADC_PollForConversion(&hadc3, 10) == HAL_OK) {
 	      adc_raw_value = HAL_ADC_GetValue(&hadc3);
@@ -240,21 +244,27 @@ void StartDefaultTask(void *argument)
 /* Private application code --------------------------------------------------*/
 /* USER CODE BEGIN Application */
 void resetStats(){
-	max=0.0f;
-	min=999.0f;
-	avg=0;
-	count = 0;
+//	max=0.0f;
+//	min=999.0f;
+//	avg=0;
+//	count = 0;
+
+	s.max=0.0f;
+	s.min=999.0f;
+	s.avg=0;
+	s.count = 0;
 }
 void HAL_HSEM_FreeCallback(uint32_t semmask){
-	if(semmask & __HAL_HSEM_SEMID_TO_MASK(4)){
-		resetStats();
-	}
 	if(semmask & __HAL_HSEM_SEMID_TO_MASK(3)){
 			// Instant Data tx
 	}
 	if(semmask & __HAL_HSEM_SEMID_TO_MASK(5)){
 		// Sampling rate change
 	}
+//	if(semmask & __HAL_HSEM_SEMID_TO_MASK(4)){
+//			// Sampling rate change
+//		resetStats();
+//	}
 }
 /* USER CODE END Application */
 

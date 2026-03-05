@@ -47,12 +47,33 @@ void Board1_M4_transmit(float , float , float , int );
 
 /* Private macro -------------------------------------------------------------*/
 /* USER CODE BEGIN PM */
+#define DEBOUNCE_MS   50U
 
+static uint32_t last_tick_sw1 = 0U;
+static uint32_t last_tick_sw2 = 0U;
+static uint32_t last_tick_sw3 = 0U;
+static uint32_t last_tick_sw4 = 0U;
+
+
+
+#define SW1_PIN   GPIO_PIN_9
+#define SW1_PORT  GPIOE
+
+#define SW2_PIN   GPIO_PIN_11
+#define SW2_PORT  GPIOE
+
+#define SW3_PIN   GPIO_PIN_13
+#define SW3_PORT  GPIOE
+
+#define SW4_PIN   GPIO_PIN_15
+#define SW4_PORT  GPIOF
+
+static void Notify_M7_via_HSEM(uint32_t hsem_id);
 /* USER CODE END PM */
 
 /* Private variables ---------------------------------------------------------*/
 /* USER CODE BEGIN Variables */
-
+int flag = 0;
 /* USER CODE END Variables */
 /* Definitions for defaultTask */
 osThreadId_t defaultTaskHandle;
@@ -182,14 +203,64 @@ void Board1_M4_transmit(float min, float max, float avg, int event){
 
 	snprintf(msg, sizeof(msg), "MIN:%.2f,MAX:%.2f,AVG:%.2f,EVT:%d\r\n", min, max, avg, event);
 
-
+	printf(msg);
 	if (HAL_UART_Transmit(&huart2, (uint8_t*)msg, sizeof(msg)-1, 1000) == HAL_OK){
-		printf(msg);
+		printf("Transmitted\r\n");
 	}
 
 
 }
 
+static void Notify_M7_via_HSEM(uint32_t hsem_id)
+{
 
+    while (HAL_HSEM_FastTake(hsem_id) != HAL_OK){}
+    HAL_HSEM_Release(hsem_id,0);
+}
+
+void HAL_GPIO_EXTI_Callback(uint16_t GPIO_Pin)
+{
+    uint32_t now = HAL_GetTick();
+    if (GPIO_Pin == SW1_PIN)
+    {
+        if ((now - last_tick_sw1) < DEBOUNCE_MS) return;
+        last_tick_sw1 = now;
+
+        s.is_run ^= 1U;
+        //Notify_M7_via_HSEM(2);
+        Board1_M4_transmit(s.min, s.max, s.avg, 1);
+    }
+
+    else if (GPIO_Pin == SW2_PIN)
+    {
+        if ((now - last_tick_sw2) < DEBOUNCE_MS) return;
+        last_tick_sw2 = now;
+
+        s.instant_tx= 1U;
+
+        Notify_M7_via_HSEM(3);
+        Board1_M4_transmit(s.min, s.max, s.avg, 3);
+    }
+
+    else if (GPIO_Pin == SW3_PIN)
+    {
+        if ((now - last_tick_sw3) < DEBOUNCE_MS) return;
+        last_tick_sw3 = now;
+
+        s.reset_stats = 1;
+
+        Board1_M4_transmit(0.0f, 0.0f, 0.0f, 4);
+        Notify_M7_via_HSEM(4);
+    }
+
+    else if (GPIO_Pin == SW4_PIN)
+    {
+        if ((now - last_tick_sw4) < DEBOUNCE_MS) return;
+        last_tick_sw4 = now;
+        s.sample_rate_index = (s.sample_rate_index + 1 ) % 7 ;
+        Notify_M7_via_HSEM(5);
+        Board1_M4_transmit(s.min, s.max, s.avg, 2);
+    }
+}
 /* USER CODE END Application */
 

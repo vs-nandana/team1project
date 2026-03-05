@@ -110,7 +110,7 @@ int main(void)
   s.min = 99.0f;
   s.max = 0.0f;
   s.avg = 0.0f;
-  s.sample_rate_index = 0;
+  s.sample_rate_index = 1;
   s.is_run = 1;
   s.instant_tx = 0;
   s.reset_stats = 0;
@@ -146,7 +146,7 @@ Error_Handler();
   MX_GPIO_Init();
   MX_ADC3_Init();
   /* USER CODE BEGIN 2 */
-
+  HAL_HSEM_ActivateNotification(__HAL_HSEM_SEMID_TO_MASK(2) | __HAL_HSEM_SEMID_TO_MASK(3) | __HAL_HSEM_SEMID_TO_MASK(4) | __HAL_HSEM_SEMID_TO_MASK(5));
   /* USER CODE END 2 */
 
   /* Init scheduler */
