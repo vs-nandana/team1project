@@ -1,5 +1,5 @@
 Middlewares/FreeRTOS/stream_buffer.o: \
- /home/george/STM32CubeIDE/workspace_2.0.0/team1project/Middlewares/Third_Party/FreeRTOS/Source/stream_buffer.c \
+ /home/vijay/Documents/STM/team1project/Middlewares/Third_Party/FreeRTOS/Source/stream_buffer.c \
  ../../../Middlewares/Third_Party/FreeRTOS/Source/include/FreeRTOS.h \
  ../../../CM7/Core/Inc/FreeRTOSConfig.h \
  ../../../Middlewares/Third_Party/FreeRTOS/Source/include/projdefs.h \

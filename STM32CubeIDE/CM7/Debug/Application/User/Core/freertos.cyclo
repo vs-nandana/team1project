@@ -1,2 +1,7 @@
-/home/george/STM32CubeIDE/workspace_2.0.0/team1project/CM7/Core/Src/freertos.c:72:6:MX_FREERTOS_Init	1
-/home/george/STM32CubeIDE/workspace_2.0.0/team1project/CM7/Core/Src/freertos.c:114:6:StartDefaultTask	1
+/home/vijay/Documents/STM/team1project/CM7/Core/Src/freertos.c:82:7:findTemp	1
+/home/vijay/Documents/STM/team1project/CM7/Core/Src/freertos.c:96:7:findAvg	3
+/home/vijay/Documents/STM/team1project/CM7/Core/Src/freertos.c:107:6:leftShiftAndAdd	2
+/home/vijay/Documents/STM/team1project/CM7/Core/Src/freertos.c:129:6:MX_FREERTOS_Init	1
+/home/vijay/Documents/STM/team1project/CM7/Core/Src/freertos.c:171:6:StartDefaultTask	7
+/home/vijay/Documents/STM/team1project/CM7/Core/Src/freertos.c:242:6:resetStats	1
+/home/vijay/Documents/STM/team1project/CM7/Core/Src/freertos.c:248:6:HAL_HSEM_FreeCallback	2

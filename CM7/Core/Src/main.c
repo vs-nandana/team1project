@@ -111,7 +111,7 @@ int main(void)
   s.max = 0.0f;
   s.avg = 0.0f;
   s.sample_rate_index = 0;
-  s.is_run = 0;
+  s.is_run = 1;
   s.instant_tx = 0;
   s.reset_stats = 0;
   /* USER CODE END Init */

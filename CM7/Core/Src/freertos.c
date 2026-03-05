@@ -48,7 +48,14 @@ SharedMemory_t s;
 
 /* Private variables ---------------------------------------------------------*/
 /* USER CODE BEGIN Variables */
-
+volatile float current_temperature=0.0f;
+uint32_t adc_raw_value = 0;
+int sample_arr[7]={500,1000,5000,10000,20000,30000,60000};
+int length;
+float max=0.0f , min=999.0f;
+float avg=0;
+float buff[240];
+volatile int count = 0;
 /* USER CODE END Variables */
 /* Definitions for defaultTask */
 osThreadId_t defaultTaskHandle;
@@ -66,13 +73,12 @@ const osThreadAttr_t defaultTask_attributes = {
 #define TS_CAL2_ADDR ((uint16_t*)0x1FF1E840) // 110°C
 #define TS_VREF      3300.0f                 // Calibration Voltage in mV
 
-float buff[61];
-volatile int count = 0;
+
 
 
 //  float findAvg(float *buff, int count);
 //  void leftShiftAndAdd(float * buff,int loc_to_add,float val_to_add);
-
+void resetStats();
 float findTemp(uint32_t adc_raw_value ){
 	float temperature =0.0f;
     // Get factory calibration values from system memory
@@ -165,17 +171,13 @@ void MX_FREERTOS_Init(void) {
 void StartDefaultTask(void *argument)
 {
   /* USER CODE BEGIN StartDefaultTask */
-    volatile float current_temperature=0.0f;
-    uint32_t adc_raw_value = 0;
-    int sample_arr[7]={500,1000,5000,10000,20000,30000,60000};
-	  int length = (int)(60000 / sample_arr[s.sample_rate_index]);
-	  float max=0.0f , min=999.0f;
-	  float avg=0;
 
+  length = (int)(60000 / sample_arr[s.sample_rate_index]);
 
   /* Infinite loop */
   for(;;)
   {
+	  while(s.is_run){
 	  HAL_ADC_Start(&hadc3);
 	  if (HAL_ADC_PollForConversion(&hadc3, 10) == HAL_OK) {
 	      adc_raw_value = HAL_ADC_GetValue(&hadc3);
@@ -229,6 +231,7 @@ void StartDefaultTask(void *argument)
 
 	  }
 	  HAL_ADC_Stop(&hadc3);
+	  }
 }
 
   }
@@ -236,6 +239,22 @@ void StartDefaultTask(void *argument)
 
 /* Private application code --------------------------------------------------*/
 /* USER CODE BEGIN Application */
-
+void resetStats(){
+	max=0.0f;
+	min=999.0f;
+	avg=0;
+	count = 0;
+}
+void HAL_HSEM_FreeCallback(uint32_t semmask){
+	if(semmask & __HAL_HSEM_SEMID_TO_MASK(4)){
+		resetStats();
+	}
+	if(semmask & __HAL_HSEM_SEMID_TO_MASK(3)){
+			// Instant Data tx
+	}
+	if(semmask & __HAL_HSEM_SEMID_TO_MASK(5)){
+		// Sampling rate change
+	}
+}
 /* USER CODE END Application */
 

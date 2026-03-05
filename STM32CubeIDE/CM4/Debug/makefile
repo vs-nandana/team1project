@@ -62,8 +62,8 @@ all: main-build
 main-build: team1project0.1_CM4.elf secondary-outputs
 
 # Tool invocations
-team1project0.1_CM4.elf team1project0.1_CM4.map: $(OBJS) $(USER_OBJS) /home/george/STM32CubeIDE/workspace_2.0.0/team1project/STM32CubeIDE/CM4/STM32H755ZITX_FLASH.ld makefile objects.list $(OPTIONAL_TOOL_DEPS)
-	arm-none-eabi-gcc -o "team1project0.1_CM4.elf" @"objects.list" $(USER_OBJS) $(LIBS) -mcpu=cortex-m4 -T"/home/george/STM32CubeIDE/workspace_2.0.0/team1project/STM32CubeIDE/CM4/STM32H755ZITX_FLASH.ld" --specs=nosys.specs -Wl,-Map="team1project0.1_CM4.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -u _printf_float -u _scanf_float -Wl,--start-group -lc -lm -Wl,--end-group
+team1project0.1_CM4.elf team1project0.1_CM4.map: $(OBJS) $(USER_OBJS) /home/vijay/Documents/STM/team1project/STM32CubeIDE/CM4/STM32H755ZITX_FLASH.ld makefile objects.list $(OPTIONAL_TOOL_DEPS)
+	arm-none-eabi-gcc -o "team1project0.1_CM4.elf" @"objects.list" $(USER_OBJS) $(LIBS) -mcpu=cortex-m4 -T"/home/vijay/Documents/STM/team1project/STM32CubeIDE/CM4/STM32H755ZITX_FLASH.ld" --specs=nosys.specs -Wl,-Map="team1project0.1_CM4.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -u _printf_float -u _scanf_float -Wl,--start-group -lc -lm -Wl,--end-group
 	@echo 'Finished building target: $@'
 	@echo ' '
 

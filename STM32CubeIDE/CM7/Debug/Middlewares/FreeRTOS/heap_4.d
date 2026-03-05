@@ -1,5 +1,5 @@
 Middlewares/FreeRTOS/heap_4.o: \
- /home/george/STM32CubeIDE/workspace_2.0.0/team1project/Middlewares/Third_Party/FreeRTOS/Source/portable/MemMang/heap_4.c \
+ /home/vijay/Documents/STM/team1project/Middlewares/Third_Party/FreeRTOS/Source/portable/MemMang/heap_4.c \
  ../../../Middlewares/Third_Party/FreeRTOS/Source/include/FreeRTOS.h \
  ../../../CM7/Core/Inc/FreeRTOSConfig.h \
  ../../../Middlewares/Third_Party/FreeRTOS/Source/include/projdefs.h \

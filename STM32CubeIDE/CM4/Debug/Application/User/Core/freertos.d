@@ -1,5 +1,5 @@
 Application/User/Core/freertos.o: \
- /home/george/STM32CubeIDE/workspace_2.0.0/team1project/CM4/Core/Src/freertos.c \
+ /home/vijay/Documents/STM/team1project/CM4/Core/Src/freertos.c \
  ../../../Middlewares/Third_Party/FreeRTOS/Source/include/FreeRTOS.h \
  ../../../CM4/Core/Inc/FreeRTOSConfig.h \
  ../../../Middlewares/Third_Party/FreeRTOS/Source/include/projdefs.h \
