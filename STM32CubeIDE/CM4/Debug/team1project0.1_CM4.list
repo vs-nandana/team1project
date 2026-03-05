@@ -35,15 +35,15 @@ Idx Name          Size      VMA       LMA       File off  Algn
                   CONTENTS, READONLY, DEBUGGING, OCTETS
  15 .debug_macro  0003e78e  00000000  00000000  0003bc55  2**0
                   CONTENTS, READONLY, DEBUGGING, OCTETS
- 16 .debug_line   0002227d  00000000  00000000  0007a3e3  2**0
+ 16 .debug_line   0002227b  00000000  00000000  0007a3e3  2**0
                   CONTENTS, READONLY, DEBUGGING, OCTETS
- 17 .debug_str    001935be  00000000  00000000  0009c660  2**0
+ 17 .debug_str    001935be  00000000  00000000  0009c65e  2**0
                   CONTENTS, READONLY, DEBUGGING, OCTETS
- 18 .comment      00000043  00000000  00000000  0022fc1e  2**0
+ 18 .comment      00000043  00000000  00000000  0022fc1c  2**0
                   CONTENTS, READONLY
- 19 .debug_frame  000086a8  00000000  00000000  0022fc64  2**2
+ 19 .debug_frame  000086a8  00000000  00000000  0022fc60  2**2
                   CONTENTS, READONLY, DEBUGGING, OCTETS
- 20 .debug_line_str 00000072  00000000  00000000  0023830c  2**0
+ 20 .debug_line_str 00000072  00000000  00000000  00238308  2**0
                   CONTENTS, READONLY, DEBUGGING, OCTETS
 
 Disassembly of section .text:
@@ -1644,14 +1644,14 @@ void HAL_GPIO_EXTI_Callback(uint16_t GPIO_Pin)
  8101324:	68fb      	ldr	r3, [r7, #12]
  8101326:	6013      	str	r3, [r2, #0]
 
-        s.instant_tx= 1U;
- 8101328:	4b3a      	ldr	r3, [pc, #232]	@ (8101414 <HAL_GPIO_EXTI_Callback+0x15c>)
- 810132a:	2201      	movs	r2, #1
- 810132c:	75da      	strb	r2, [r3, #23]
+        // s.instant_tx= 1U;
 
         Notify_M7_via_HSEM(3);
- 810132e:	2003      	movs	r0, #3
- 8101330:	f7ff ffae 	bl	8101290 <Notify_M7_via_HSEM>
+ 8101328:	2003      	movs	r0, #3
+ 810132a:	f7ff ffb1 	bl	8101290 <Notify_M7_via_HSEM>
+        osDelay(100);
+ 810132e:	2064      	movs	r0, #100	@ 0x64
+ 8101330:	f006 faf1 	bl	8107916 <osDelay>
         Board1_M4_transmit(s.min, s.max, s.avg, 3, s.sample_rate_index, s.is_run);
  8101334:	4b37      	ldr	r3, [pc, #220]	@ (8101414 <HAL_GPIO_EXTI_Callback+0x15c>)
  8101336:	edd3 7a01 	vldr	s15, [r3, #4]

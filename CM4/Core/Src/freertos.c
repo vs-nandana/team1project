@@ -237,9 +237,10 @@ void HAL_GPIO_EXTI_Callback(uint16_t GPIO_Pin)
         if ((now - last_tick_sw2) < DEBOUNCE_MS) return;
         last_tick_sw2 = now;
 
-        s.instant_tx= 1U;
+        // s.instant_tx= 1U;
 
         Notify_M7_via_HSEM(3);
+        osDelay(100);
         Board1_M4_transmit(s.min, s.max, s.avg, 3, s.sample_rate_index, s.is_run);
     }
 

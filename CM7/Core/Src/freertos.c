@@ -80,6 +80,7 @@ const osThreadAttr_t defaultTask_attributes = {
 //  float findAvg(float *buff, int count);
 //  void leftShiftAndAdd(float * buff,int loc_to_add,float val_to_add);
 void resetStats();
+void getData();
 float findTemp(uint32_t adc_raw_value ){
 	float temperature =0.0f;
     // Get factory calibration values from system memory
@@ -262,6 +263,7 @@ void resetStats(){
 void HAL_HSEM_FreeCallback(uint32_t semmask){
 	if(semmask & __HAL_HSEM_SEMID_TO_MASK(3)){
 			// Instant Data tx
+			getData();
 	}
 	if(semmask & __HAL_HSEM_SEMID_TO_MASK(5)){
 		// Sampling rate change
@@ -272,6 +274,60 @@ void HAL_HSEM_FreeCallback(uint32_t semmask){
 			// Sampling rate change
 		resetStats();
 	}
+}
+
+void getData(){
+	HAL_ADC_Start(&hadc3);
+		  if (HAL_ADC_PollForConversion(&hadc3, 10) == HAL_OK) {
+		      adc_raw_value = HAL_ADC_GetValue(&hadc3);
+
+
+		      while (HAL_HSEM_FastTake(SH_MEM_SEM_ID) != HAL_OK);
+
+		      current_temperature = findTemp(adc_raw_value);
+
+
+		      // Min, max calculation
+		      if(current_temperature < min){
+		    	  min = current_temperature;
+		      }
+		      if(current_temperature > max)
+		      {
+		      	    	  max = current_temperature;
+		      }
+
+
+
+		      s.min=min;
+		      s.max=max;
+
+
+		      // Storing it into a buffer
+
+		      	      if (count < length)
+		      	      {
+		      	        buff[count] = current_temperature;
+		      	        count++;
+		      	        // continue;
+		      	      }else{
+		      	        // tempPrint(temperature);
+		      	        leftShiftAndAdd(buff,length-1,current_temperature);
+		      	      }
+		      	      avg= findAvg(buff,count);
+		      	      s.avg=avg;
+
+
+		      	      // To place it in shared memory
+	/*
+		              while (shared_data.cm7_updated == 1)
+		              {
+		                  HAL_Delay(10);  // wait for CM4 to read
+		              }
+	*/
+
+			  HAL_HSEM_Release(SH_MEM_SEM_ID, 0);
+		  }
+		  HAL_ADC_Stop(&hadc3);
 }
 /* USER CODE END Application */
 

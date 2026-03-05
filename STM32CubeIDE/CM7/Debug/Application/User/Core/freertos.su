@@ -1,7 +1,8 @@
-/home/vijay/Documents/STM/team1project/CM7/Core/Src/freertos.c:83:7:findTemp	24	static
-/home/vijay/Documents/STM/team1project/CM7/Core/Src/freertos.c:97:7:findAvg	24	static
-/home/vijay/Documents/STM/team1project/CM7/Core/Src/freertos.c:108:6:leftShiftAndAdd	32	static
-/home/vijay/Documents/STM/team1project/CM7/Core/Src/freertos.c:130:6:MX_FREERTOS_Init	8	static
-/home/vijay/Documents/STM/team1project/CM7/Core/Src/freertos.c:172:6:StartDefaultTask	16	static
-/home/vijay/Documents/STM/team1project/CM7/Core/Src/freertos.c:252:6:resetStats	4	static
-/home/vijay/Documents/STM/team1project/CM7/Core/Src/freertos.c:262:6:HAL_HSEM_FreeCallback	16	static
+/home/vijay/Documents/STM/team1project/CM7/Core/Src/freertos.c:84:7:findTemp	24	static
+/home/vijay/Documents/STM/team1project/CM7/Core/Src/freertos.c:98:7:findAvg	24	static
+/home/vijay/Documents/STM/team1project/CM7/Core/Src/freertos.c:109:6:leftShiftAndAdd	32	static
+/home/vijay/Documents/STM/team1project/CM7/Core/Src/freertos.c:131:6:MX_FREERTOS_Init	8	static
+/home/vijay/Documents/STM/team1project/CM7/Core/Src/freertos.c:173:6:StartDefaultTask	16	static
+/home/vijay/Documents/STM/team1project/CM7/Core/Src/freertos.c:253:6:resetStats	4	static
+/home/vijay/Documents/STM/team1project/CM7/Core/Src/freertos.c:263:6:HAL_HSEM_FreeCallback	16	static
+/home/vijay/Documents/STM/team1project/CM7/Core/Src/freertos.c:279:6:getData	8	static
